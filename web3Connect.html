@@ -1,0 +1,39 @@
+<html>
+<head>
+
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+	<script>
+	//"./web3.js-develop/dist/web3.js 
+	// 		not working
+	//"https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js" 
+	// 		master (0.14.0)
+	//"https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"
+	// 		develop (1.0.0)
+	</script>
+</head>
+<body>
+	<script>
+		if (typeof web3 !== 'undefined') {
+			//web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
+		}
+		
+		// code for version 1.0
+		/*
+		const address = "0x939F3F652240504192C404788665d4C3E616DB6e";
+		web3.eth.getBalance(address, (err, wei) => {
+			balance = web3.utils.fromWei(wei, 'ether');
+			console.log(balance);
+		})
+		*/
+		
+		// code for version 0.14.0
+		/*
+		var coinbase = web3.eth.coinbase;
+		var balance = web3.eth.getBalance(coinbase);
+		*/
+	</script>
+</body>
+</html>
