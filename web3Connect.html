@@ -20,6 +20,19 @@
 			web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
 		}
 		
+		var object = web3.eth.accounts.create();
+		
+		console.log(object);
+		console.log(object.address);
+		console.log(object["privateKey"]);
+		
+		console.log(object[0]);// { } object,	[ ] array
+		
+		for(var x in object){
+			console.log(object[x]);
+		}	// for in : Object	
+		
+		
 		// code for version 1.0
 		/*
 		const address = "0x939F3F652240504192C404788665d4C3E616DB6e";
@@ -34,6 +47,8 @@
 		var coinbase = web3.eth.coinbase;
 		var balance = web3.eth.getBalance(coinbase);
 		*/
+		
+		
 	</script>
 </body>
 </html>
