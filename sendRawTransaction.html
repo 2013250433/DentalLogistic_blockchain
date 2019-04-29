@@ -1,0 +1,57 @@
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
+
+</head>
+<body>
+	<script>
+		/*
+		if (typeof web3 !== 'undefined') {
+			//web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
+		}
+		*/
+		web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
+		
+		var balance = web3.eth.getBalance("0xC39BBb80FbAb2738E358FC9C03cd69AA410c68C0");
+		console.log(balance);
+					
+		//var Tx = require('ethereumjs-tx'); 
+		var privateKey = new ethereumjs.Buffer.Buffer('in privateKey.js!', 'hex')
+		//private key of account that has 2 eth.
+		
+		var rawTx = {
+		 nonce: '0x01',
+		 gasPrice: '0x09184e72a000',
+		 gasLimit: '0x30000',
+		 to: '0xa3c84a57f0995504b78476884f5ceDE50B733C47',	//Account2
+		 //value: '0x00', 
+		 data: '0x7f7465737432000000000000000000000000000000000000000000000000000000600057',
+		}
+		
+		var ethAmount = web3.toHex(web3.toWei('0.01','ether'));
+		console.log('sending eth: '+ethAmount);
+		rawTx.value = ethAmount; 
+		
+		var tx = new ethereumjs.Tx(rawTx);
+		tx.sign(privateKey);
+		
+		var feeCost = tx.getUpfrontCost();
+		console.log('feeCost: '+feeCost);
+		
+		var serializedTx = tx.serialize();
+		//console.log(serializedTx.toString('hex'));
+		//f889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f
+		web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
+		 if (!err)
+			console.log(hash); // "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385"
+		 else
+			console.log(err);
+		});
+			
+	</script>
+</body>
+</html>
