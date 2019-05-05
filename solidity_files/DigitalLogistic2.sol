@@ -88,7 +88,7 @@ contract DLogistic {
     }
     
     function getFouth() view external returns (bool){
-        return fouth;
+        return fourth;
     }
     
     function getFive() view external returns (bool){
