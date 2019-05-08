@@ -87,7 +87,7 @@ contract DLogistic {
         return third;
     }
     
-    function getFouth() view external returns (bool){
+    function getFourth() view external returns (bool){
         return fourth;
     }
     
