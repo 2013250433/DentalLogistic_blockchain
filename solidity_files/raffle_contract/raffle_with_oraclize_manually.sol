@@ -122,21 +122,4 @@ contract RandomExample is usingOraclize {
         
         return (player[num]);
     }
-    
-    //testcode
-    function showTwo() public view returns(uint){
-        uint result = 0;
-        uint padding = 1;
-        for(uint i=0;i<participantNum;i++){
-            if(player[i]==2){
-                result += i * padding;
-                padding = padding * 100;
-            }
-            if(player[i]==1){
-                result += i * padding;
-                padding = padding * 1000;
-            }
-        }
-        return result;
-    }
 }
